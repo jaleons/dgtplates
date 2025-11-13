@@ -42,6 +42,7 @@ def dbinit():
              cursor.execute("SHOW TABLES;")
 
              print("📋 Tablas disponibles:")
+             # Compruebo si existe la tabla de dgtplates y si no existe la creo
              for tabla in cursor:
                  print(" -", tabla[0])
 
@@ -159,6 +160,7 @@ else:
 # --- 5. Cargamos los datos leídos en la Base de Datos que vayamos a usar
 
 # Importante considerar tabla de taxonomía para Normalizar la Marca y el Modelo del vehículo
+
 
 
 
