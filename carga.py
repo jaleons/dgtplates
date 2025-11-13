@@ -5,17 +5,20 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 from zipfile import ZipFile
 
+# Definimos variables de sólo lectura *****************************************************************************
+# URL de la página de datos de registro de la DGT
+dgt_url = 'https://www.dgt.es/menusecundario/dgt-en-cifras/matraba-listados/matriculaciones-automoviles-diario.html'
+base_url = 'https://www.dgt.es'
+# Variables de fechas
+today = datetime.now()
+yesterday = today - timedelta(days=1)
+
 # METER EN FUNCIÓN *********************************************************************************
 # El cálculo de fechas lo haremos en función del último día que hayamos cargado en la base de datos
 #   --- Esta función será algo más compleja dado que tendrá que acceder a la BD para verificar cuál
 #   ---      es la última fecha cargada
 # **************************************************************************************************
-# --- 1. Cálculo de fechas ---
-# Obtener la fecha de hoy
-today = datetime.now()
-
-# Restar un día para obtener la fecha de ayer
-yesterday = today - timedelta(days=1)
+# --- 1. Cálculo de fechas --
 
 # Formatear la fecha de ayer en formato 'YYYYMMDD' para la convención de nombres de archivo de la DGT
 yesterday_yyyymmdd = yesterday.strftime('%Y%m%d')
@@ -35,9 +38,6 @@ print(f"Fecha de anteayer formateada (YYYYMMDD): {day_before_yesterday_yyyymmdd}
 
 # METER EN FUNCIÓN ****************************************************************
 # --- 2. Raspar la página de la DGT para la URL del archivo ZIP (con respaldo) ---
-# Definir la URL de la página de datos de registro de la DGT
-dgt_url = 'https://www.dgt.es/menusecundario/dgt-en-cifras/matraba-listados/matriculaciones-automoviles-diario.html'
-base_url = 'https://www.dgt.es'
 
 # Enviar una solicitud HTTP GET a la URL de la DGT
 response = requests.get(dgt_url)
@@ -120,3 +120,4 @@ else:
 # --- 5. Cargamos los datos leídos en la Base de Datos que vayamos a usar
 
 # Importante considerar tabla de taxonomía para Normalizar la Marca y el Modelo del vehículo
+
