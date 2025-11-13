@@ -11,17 +11,29 @@ dgt_url = 'https://www.dgt.es/menusecundario/dgt-en-cifras/matraba-listados/matr
 base_url = 'https://www.dgt.es'
 # Variables de fechas
 today = datetime.now()
+# datefie contendrá la fecha que obtendremos en la función que debe comprobar la última fecha cargada
+global datefile = today - timedelta(days=1)
+
 yesterday = today - timedelta(days=1)
+yesterday_yyyymmdd = yesterday.strftime('%Y%m%d')
+
+# FUNCIÓN definimos e inicializamos base de datos **************************************************
+def dbinit():
+    user = ""
+    result = ""
+    return result
+# **************************************************************************************************
 
 # METER EN FUNCIÓN *********************************************************************************
 # El cálculo de fechas lo haremos en función del último día que hayamos cargado en la base de datos
 #   --- Esta función será algo más compleja dado que tendrá que acceder a la BD para verificar cuál
 #   ---      es la última fecha cargada
 # **************************************************************************************************
-# --- 1. Cálculo de fechas --
+# --- 1. Cálculo de fechas ---
 
-# Formatear la fecha de ayer en formato 'YYYYMMDD' para la convención de nombres de archivo de la DGT
-yesterday_yyyymmdd = yesterday.strftime('%Y%m%d')
+def lastfile():
+    result = ""
+    return result
 
 # Restar dos días para obtener la fecha de anteayer
 day_before_yesterday = today - timedelta(days=2)
@@ -120,4 +132,5 @@ else:
 # --- 5. Cargamos los datos leídos en la Base de Datos que vayamos a usar
 
 # Importante considerar tabla de taxonomía para Normalizar la Marca y el Modelo del vehículo
+
 
