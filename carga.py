@@ -1,6 +1,8 @@
 import io
 import re
 import requests
+import mysql.connector
+from mysql.connector import Error
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 from zipfile import ZipFile
@@ -19,8 +21,33 @@ yesterday_yyyymmdd = yesterday.strftime('%Y%m%d')
 
 # FUNCIÓN definimos e inicializamos base de datos **************************************************
 def dbinit():
-    user = ""
-    result = ""
+# Datos de conexión
+    config = {
+        "user": "lyondbuser",
+        "password": "dgtplates000**",
+        "host": "POAPMYSQL133.dns-servicio.com",
+        "port": 3306,
+        "database": "8600616_dgtplates"
+    }
+
+    try:
+        # Conectar a la base de datos
+        conexion = mysql.connector.connect(**config)
+
+        if conexion.is_connected():
+             print("✅ Conexión exitosa a la base de datos")
+
+             # Crear un cursor para ejecutar consultas
+             cursor = conexion.cursor()
+             cursor.execute("SHOW TABLES;")
+
+             print("📋 Tablas disponibles:")
+             for tabla in cursor:
+                 print(" -", tabla[0])
+
+    except Error as e:
+        print("❌ Error al conectar a MySQL:", e)
+
     return result
 # **************************************************************************************************
 
@@ -132,5 +159,6 @@ else:
 # --- 5. Cargamos los datos leídos en la Base de Datos que vayamos a usar
 
 # Importante considerar tabla de taxonomía para Normalizar la Marca y el Modelo del vehículo
+
 
 
