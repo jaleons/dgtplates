@@ -7,6 +7,8 @@ from zipfile import ZipFile
 
 # METER EN FUNCIÓN *********************************************************************************
 # El cálculo de fechas lo haremos en función del último día que hayamos cargado en la base de datos
+#   --- Esta función será algo más compleja dado que tendrá que acceder a la BD para verificar cuál
+#   ---      es la última fecha cargada
 # **************************************************************************************************
 # --- 1. Cálculo de fechas ---
 # Obtener la fecha de hoy
@@ -116,4 +118,5 @@ else:
     print("\nNo hay contenido para mostrar, ya que no se encontró ningún archivo ZIP o no se extrajo ningún archivo TXT.")
 
 # --- 5. Cargamos los datos leídos en la Base de Datos que vayamos a usar
+
 # Importante considerar tabla de taxonomía para Normalizar la Marca y el Modelo del vehículo
